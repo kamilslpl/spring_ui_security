@@ -1,0 +1,26 @@
+:root{
+  --background: #FFFFFF;
+  --button-color: #03045E;
+  --header: #0077B6;
+  --footer: #0077B6;
+  --body: #48CAE4;
+  --card-color: #CAF0F8;
+  --border-color: #9F2B2B;
+  --form-fields-color: white;
+  --button-clear-color: #ff9800;
+  --button-submit-color: #03045E;
+  --font-color-button-clear: white;
+  --font-color-button-submit: white;
+  --button-add-color: inherit;
+
+  --width-size: 80vw;
+  --margin-size: 4px;
+}
+
+html {
+  background-color: var(--background); /* R (hex FF = 255) G (hex E6) B (hex 8A) */
+}
+
+.App {
+  text-align: center;
+}
