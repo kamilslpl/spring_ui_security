@@ -4,10 +4,10 @@ import Card from "../card/Card";
 import {Button, Grid, TextField} from "@mui/material";
 import {Send} from "@mui/icons-material";
 import {connect} from "react-redux";
-import * as actions from "../redux/actions";
+import * as actions from "../../redux/actions";
 
 // See: https://github.com/SaintAmeN/arppl4_react_rental_ui/blob/master/src/components/carform/CarForm.js
-const LoginPage = () => {
+const LoginPage = (props) => {
     const [authorization, setAuthorization] = useState({});
 
     const updateValue = (event, name) => {
@@ -16,11 +16,10 @@ const LoginPage = () => {
             const authorizationCopy = {...authorization};
             setAuthorization(authorizationCopy)
     }
-
     const sendForm = () => {
-
+        console.log("Logging attempt.")
+        props.authenticate(authorization);
     }
-
     return (
         <div className={classes.LoginPage}>
             <Card cardTitle={"Login Page"}>
@@ -32,11 +31,13 @@ const LoginPage = () => {
                             }}
                             value={authorization.username}
                             label={"Username:"}
+                            disabled={props.isLoading}
                             variant={"filled"}/>
                     </Grid>
                     <Grid item xs={12} className={classes.FormItem}>
                         <TextField
                             type={"password"}
+                            disabled={props.isLoading}
                             onChange={(event) => {
                                 updateValue(event, "password")
                             }}
@@ -46,12 +47,14 @@ const LoginPage = () => {
                     </Grid>
                     <Grid container className={classes.FormButtonPanel}>
                         <Grid item xs={2}>
+                            {props.isLoading ? "True" : "False"}
                         </Grid>
                         <Grid item xs={8}></Grid>
                         <Grid item xs={2}>
                             <Button className={classes.FormButtonSubmit}
                                     variant={"contained"}
                                     onClick={sendForm}
+                                    disabled={props.isLoading}
                                     endIcon={<Send/>}>
                                 Submit
                             </Button>
@@ -64,7 +67,9 @@ const LoginPage = () => {
 };
 
 const mapStateToProps = state => {
-
+    return {
+        isLoading: state.authorization.loading,
+    }
 }
 
 const mapDispatchToProps = dispatch => {
