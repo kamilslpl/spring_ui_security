@@ -1,4 +1,6 @@
 export {
+    checkStorageAuthentication,
     authorizationStart,
-    authenticateUser
+    authenticateUser,
+    authorizationLogout
 } from './authorization';
